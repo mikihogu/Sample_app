@@ -6,18 +6,17 @@ class ListsController < ApplicationController
   
   # 保存機能追加のために追記
   def create
-    # データを受け取り新規登録するためのインスタンス
     list = List.new(list_params)
-    # データをデータベースに登録するためのインスタンス
     list.save
-    # トップ画面にリダイレクト
-    redirect_to '/top'
+    redirect_to list_path(list.id)
   end
 
   def index
+    @lists = List.all
   end
 
   def show
+    @list = List.find(params[:id])
   end
 
   def edit
